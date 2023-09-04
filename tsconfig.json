@@ -1,0 +1,28 @@
+{
+    "compilerOptions": {
+        "target": "ES2018",
+        "module": "ESNext",
+        "moduleResolution": "Node",
+        "lib": ["ESNext", "ESNext.AsyncIterable", "DOM", "DOM.Iterable"],
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+        "allowJs": true,
+        "sourceMap": true,
+        "strict": true,
+        "noEmit": false,
+        "baseUrl": ".",
+        "experimentalDecorators": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "paths": {
+            "~/*": ["./*"],
+            "@/*": ["./*"]
+        },
+        "types": ["@types/node", "@types/jquery"]
+    },
+    "ts-node": {
+        "compilerOptions": {
+            "module": "CommonJS"
+        }
+    },
+    "exclude": ["public", "node_modules", "vendor", "vendor-bin"]
+}

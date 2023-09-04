@@ -1,0 +1,19 @@
+includes:
+    - vendor-bin/phpstan/vendor/phpstan/phpstan-symfony/extension.neon
+    - vendor-bin/phpstan/vendor/phpstan/phpstan-symfony/rules.neon
+
+parameters:
+    bootstrapFiles:
+        - %rootDir%/../../../vendor/autoload.php
+
+    checkMissingIterableValueType: false
+    reportUnmatchedIgnoredErrors: false
+    universalObjectCratesClasses:
+    ignoreErrors:
+        -
+            message: '#Cannot call method load\(\) on Symfony\\Component\\Config\\Loader\\LoaderInterface\|false#'
+            path: %currentWorkingDirectory%/src/ContaoManager/Plugin.php
+
+        -
+            message: '#Method Oneup\\ContaoBackendSortableListViewsBundle\\ContaoManager\\Plugin::getRouteCollection\(\) should return Symfony\\Component\\Routing\\RouteCollection\|null but returns mixed#'
+            path: %currentWorkingDirectory%/src/ContaoManager/Plugin.php

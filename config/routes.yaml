@@ -1,0 +1,3 @@
+oneup_contao_backend_sortable_list_views:
+    resource: ../src/Controller
+    type: annotation

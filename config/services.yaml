@@ -1,0 +1,26 @@
+services:
+    Oneup\ContaoBackendSortableListViewsBundle\Controller\Sort:
+        arguments:
+            - '@contao.routing.scope_matcher'
+            - '@Oneup\ContaoBackendSortableListViewsBundle\Service\TableNameExtractor'
+            - '@Oneup\ContaoBackendSortableListViewsBundle\Service\Sorter'
+        tags:
+            - 'controller.service_arguments'
+
+    Oneup\ContaoBackendSortableListViewsBundle\EventListener\LoadDataContainerListener:
+        arguments:
+            - '@contao.routing.scope_matcher'
+            - '@request_stack'
+            - '@contao.framework'
+            - '@contao.csrf.token_manager'
+            - '@twig'
+            - '@router'
+            - '@Oneup\ContaoBackendSortableListViewsBundle\Service\Sorter'
+        tags:
+            - { name: contao.hook, hook: loadDataContainer }
+
+    Oneup\ContaoBackendSortableListViewsBundle\Service\TableNameExtractor:
+
+    Oneup\ContaoBackendSortableListViewsBundle\Service\Sorter:
+        arguments:
+            - '@database_connection'
