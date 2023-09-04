@@ -43,7 +43,7 @@ export class SortableListView {
 
                 formData.append('REQUEST_TOKEN', window.sortableListViews.token)
                 formData.append('action', action ?? '')
-                formData.append('id', id ?? '')
+                formData.append('id', id ?? 0)
                 formData.append('oldIndex', event.oldIndex)
                 formData.append('newIndex', event.newIndex)
 

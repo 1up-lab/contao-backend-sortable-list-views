@@ -17,6 +17,10 @@ class Sorter
 
     public function sort(string $table, int $id, int $oldIndex, int $newIndex): void
     {
+        if (0 === $id) {
+            return;
+        }
+
         /**
          * < 0 --> move downward
          * = 0 --> do nothing
