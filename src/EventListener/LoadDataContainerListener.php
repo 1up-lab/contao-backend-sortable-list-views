@@ -42,6 +42,7 @@ class LoadDataContainerListener
         if (($GLOBALS['TL_DCA'][$table]['list']['sorting']['listViewSortable'] ?? null) && !$request->get('act')) {
             $GLOBALS['TL_DCA'][$table]['list']['sorting']['flag'] = 1;
             $GLOBALS['TL_DCA'][$table]['list']['sorting']['mode'] = 1;
+            $GLOBALS['TL_DCA'][$table]['list']['sorting']['fields'] = ['sorting'];
 
             $GLOBALS['TL_DCA'][$table]['list']['operations']['drag'] = [
                 'icon' => 'drag.svg',
