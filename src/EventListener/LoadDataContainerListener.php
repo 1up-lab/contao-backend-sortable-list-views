@@ -39,7 +39,7 @@ class LoadDataContainerListener
             'path' => $this->router->generate('oneup_sortable_list_views.sort'),
         ]);
 
-        if (($GLOBALS['TL_DCA'][$table]['list']['sorting']['listViewSortable'] ?? null) && !$request->get('act')) {
+        if (($GLOBALS['TL_DCA'][$table]['list']['sorting']['sortableListView'] ?? null) && !$request->get('act')) {
             $GLOBALS['TL_DCA'][$table]['list']['sorting']['flag'] = 1;
             $GLOBALS['TL_DCA'][$table]['list']['sorting']['mode'] = 1;
             $GLOBALS['TL_DCA'][$table]['list']['sorting']['fields'] = ['sorting'];
@@ -57,7 +57,7 @@ class LoadDataContainerListener
         /** @var Controller $controllerAdapter */
         $controllerAdapter = $this->contaoFramework->getAdapter(Controller::class);
 
-        if ($GLOBALS['TL_DCA'][$table]['list']['sorting']['listViewSortable'] ?? null) {
+        if ($GLOBALS['TL_DCA'][$table]['list']['sorting']['sortableListView'] ?? null) {
             $GLOBALS['TL_JAVASCRIPT'][] = $controllerAdapter->addStaticUrlTo('bundles/oneupcontaobackendsortablelistviews/backend.min.js');
         }
     }

@@ -22,7 +22,7 @@ OneupContaoBackendSortableListViewsBundle:
 # contao/dca/tl_my_custom_table.php
 
 // Add sorting flag
-$GLOBALS['TL_DCA']['tl_my_custom_table']['list']['sorting']['listViewSortable'] = true;
+$GLOBALS['TL_DCA']['tl_my_custom_table']['list']['sorting']['sortableListView'] = true;
 
 // Add database field
 $GLOBALS['TL_DCA']['tl_my_custom_table']['fields']['sorting']['sql'] = 'int(10) unsigned NOT NULL default 0';
