@@ -1,6 +1,12 @@
 Contao backend with sortable list views
 =========================================
 
+[![Latest Stable Version](http://poser.pugx.org/oneup/contao-backend-sortable-list-views/v)](https://packagist.org/packages/oneup/contao-backend-sortable-list-views) 
+[![Total Downloads](http://poser.pugx.org/oneup/contao-backend-sortable-list-views/downloads)](https://packagist.org/packages/oneup/contao-backend-sortable-list-views) 
+[![Latest Unstable Version](http://poser.pugx.org/oneup/contao-backend-sortable-list-views/v/unstable)](https://packagist.org/packages/oneup/contao-backend-sortable-list-views) 
+[![License](http://poser.pugx.org/oneup/contao-backend-sortable-list-views/license)](https://packagist.org/packages/oneup/contao-backend-sortable-list-views) 
+[![PHP Version Require](http://poser.pugx.org/oneup/contao-backend-sortable-list-views/require/php)](https://packagist.org/packages/oneup/contao-backend-sortable-list-views)
+
 Adds the missing sorting mode to Contao: custom sort without the need for a parent table.
 
 ## Installation
