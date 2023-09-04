@@ -52,8 +52,8 @@
     "prefer-stable": true,
     "support": {
         "email": "hello@1up.io",
-        "issues": "https://github.com/1up-lab/contao-sortable-list-views/issues",
-        "source": "https://github.com/1up-lab/contao-sortable-list-views"
+        "issues": "https://github.com/1up-lab/contao-backend-sortable-list-views/issues",
+        "source": "https://github.com/1up-lab/contao-backend-sortable-list-views"
     },
     "config": {
         "allow-plugins": {
