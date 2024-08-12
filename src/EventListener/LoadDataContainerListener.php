@@ -45,6 +45,7 @@ class LoadDataContainerListener
             $GLOBALS['TL_DCA'][$table]['list']['sorting']['fields'] = ['sorting'];
 
             $GLOBALS['TL_DCA'][$table]['list']['operations']['drag'] = [
+                'href' => '#',
                 'icon' => 'drag.svg',
                 'attributes' => 'class="drag-handle" aria-hidden="true"',
             ];
