@@ -34,7 +34,7 @@ class Sorter
 
         /** @var array $entry */
         $entry = $this->connection
-            ->prepare(sprintf('SELECT id, sorting FROM %s WHERE id = :id', $table))
+            ->prepare(\sprintf('SELECT id, sorting FROM %s WHERE id = :id', $table))
             ->executeQuery(['id' => $id])
             ->fetchAssociative()
         ;
@@ -53,7 +53,7 @@ class Sorter
     public function resort(string $table): void
     {
         $entries = $this->connection
-            ->prepare(sprintf('SELECT id, sorting FROM %s ORDER BY sorting ASC', $table))
+            ->prepare(\sprintf('SELECT id, sorting FROM %s ORDER BY sorting ASC', $table))
             ->executeQuery()
             ->fetchAllAssociative()
         ;
@@ -79,7 +79,7 @@ class Sorter
     private function needsInitialSorting(string $table): bool
     {
         $result = $this->connection
-            ->prepare(sprintf('SELECT COUNT(id) FROM %s WHERE sorting = 0', $table))
+            ->prepare(\sprintf('SELECT COUNT(id) FROM %s WHERE sorting = 0', $table))
             ->executeQuery()
             ->fetchOne()
         ;
