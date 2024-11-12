@@ -8,13 +8,13 @@
         "list",
         "sortable"
     ],
-    "homepage": "https://1up.io",
+    "homepage": "https://github.com/1up-lab/contao-backend-sortable-list-views",
     "license": "MIT",
     "authors": [
         {
             "name": "David Greminger",
             "email": "dg@1up.io",
-            "homepage": "https://1up.io",
+            "homepage": "https://github.com/bytehead",
             "role": "Developer"
         }
     ],
