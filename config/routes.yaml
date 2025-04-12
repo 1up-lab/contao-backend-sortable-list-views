@@ -1,3 +1,6 @@
-oneup_contao_backend_sortable_list_views:
-    resource: ../src/Controller
-    type: annotation
+oneup_sortable_list_views.sort:
+    path: '%contao.backend.route_prefix%/_sortable-list-views/sort'
+    controller: Oneup\ContaoBackendSortableListViewsBundle\Controller\Sort
+    methods: ['POST']
+    defaults:
+        - _scope: 'backend'
