@@ -3,4 +3,4 @@ oneup_sortable_list_views.sort:
     controller: Oneup\ContaoBackendSortableListViewsBundle\Controller\Sort
     methods: ['POST']
     defaults:
-        - _scope: 'backend'
+        _scope: 'backend'
