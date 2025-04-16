@@ -48,6 +48,7 @@ class LoadDataContainerListener
                 'href' => '#',
                 'icon' => 'drag.svg',
                 'attributes' => 'class="drag-handle" aria-hidden="true"',
+                'primary' => true,
             ];
 
             if ($request->get('do')) {
