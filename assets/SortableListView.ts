@@ -26,7 +26,7 @@ export class SortableListView {
         }
 
         // Remove order groups from Contao
-        this.container.querySelectorAll('table.tl_listing tbody tr:not(.toggle_select)').forEach((el) => {
+        this.container.querySelectorAll('table.tl_listing tbody tr:has(th.tl_folder_tlist, th.tl_folder_list)').forEach((el) => {
             el.remove()
         })
 
