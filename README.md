@@ -36,6 +36,11 @@ $GLOBALS['TL_DCA']['tl_my_custom_table']['fields']['sorting']['sql'] = 'int(10) 
 
 Run a Contao migration / database update and enjoy happy drag&drop sorting!
 
+## Permissions
+A sort request is only accepted if the user may access the back end module and the data container voters grant
+`ContaoCorePermissions::DC_PREFIX . $table` for an `UpdateAction` on the moved record (new `sorting` value). Restrict
+sorting with your own data container voter.
+
 ## Development
 ### Backend
 #### Install dependencies

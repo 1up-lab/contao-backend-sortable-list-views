@@ -4,6 +4,8 @@ services:
             - '@contao.routing.scope_matcher'
             - '@Oneup\ContaoBackendSortableListViewsBundle\Service\TableNameExtractor'
             - '@Oneup\ContaoBackendSortableListViewsBundle\Service\Sorter'
+            - '@contao.framework'
+            - '@security.authorization_checker'
         tags:
             - 'controller.service_arguments'
 
