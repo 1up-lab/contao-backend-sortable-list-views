@@ -1,10 +1,18 @@
+import Sortable from 'sortablejs'
 import { SortableListView } from './SortableListView'
 
 function initialize(): void {
     document.querySelectorAll<HTMLElement>('table.tl_listing tbody').forEach((el) => {
-        new SortableListView(el).init()
+        if (Sortable.get(el) === undefined) {
+            new SortableListView(el).init()
+        }
     })
 }
 
-document.addEventListener('DOMContentLoaded', initialize)
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initialize)
+} else {
+    initialize()
+}
+
 document.addEventListener('turbo:load', initialize)
