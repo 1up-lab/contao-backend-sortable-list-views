@@ -15,12 +15,30 @@ class Sorter
     ) {
     }
 
-    public function sort(string $table, int $id, int $oldIndex, int $newIndex): void
+    /**
+     * @return array<string, mixed>|null
+     */
+    public function findRecord(string $table, int $id): ?array
     {
         if (0 === $id) {
-            return;
+            return null;
         }
 
+        $record = $this->connection->fetchAssociative(
+            \sprintf('SELECT * FROM %s WHERE id = :id', $this->connection->quoteIdentifier($table)),
+            ['id' => $id],
+        );
+
+        return false === $record ? null : $record;
+    }
+
+    public function getNewSorting(int $newIndex): int
+    {
+        return (max(0, $newIndex) + 1) * self::SORT_GAP;
+    }
+
+    public function sort(string $table, int $id, int $oldIndex, int $newIndex): void
+    {
         /**
          * < 0 --> move downward
          * = 0 --> do nothing
@@ -28,43 +46,27 @@ class Sorter
          */
         $direction = $newIndex - $oldIndex;
 
-        if (0 === $direction) {
+        if (0 === $direction || null === $this->findRecord($table, $id)) {
             return;
         }
 
-        /** @var array $entry */
-        $entry = $this->connection
-            ->prepare(\sprintf('SELECT id, sorting FROM %s WHERE id = :id', $table))
-            ->executeQuery(['id' => $id])
-            ->fetchAssociative()
-        ;
+        $ids = $this->connection->fetchFirstColumn(
+            \sprintf('SELECT id FROM %s ORDER BY sorting ASC, id ASC', $this->connection->quoteIdentifier($table)),
+        );
 
-        $sortingDiff = $direction + $direction * self::SORT_GAP;
+        $ids = array_values(array_diff($ids, [$id]));
+        array_splice($ids, max(0, min($newIndex, \count($ids))), 0, [$id]);
 
-        $this->connection->update($table, [
-            'sorting' => $entry['sorting'] + $sortingDiff,
-        ], [
-            'id' => $id,
-        ]);
-
-        $this->resort($table);
+        $this->writeSorting($table, $ids);
     }
 
     public function resort(string $table): void
     {
-        $entries = $this->connection
-            ->prepare(\sprintf('SELECT id, sorting FROM %s ORDER BY sorting ASC', $table))
-            ->executeQuery()
-            ->fetchAllAssociative()
-        ;
+        $ids = $this->connection->fetchFirstColumn(
+            \sprintf('SELECT id FROM %s ORDER BY sorting ASC, id ASC', $this->connection->quoteIdentifier($table)),
+        );
 
-        foreach ($entries as $index => $entry) {
-            $this->connection->update($table, [
-                'sorting' => ($index + 1) * self::SORT_GAP,
-            ], [
-                'id' => $entry['id'],
-            ]);
-        }
+        $this->writeSorting($table, $ids);
     }
 
     public function sortInitial(string $table): void
@@ -76,13 +78,25 @@ class Sorter
         $this->resort($table);
     }
 
+    /**
+     * @param list<mixed> $ids
+     */
+    private function writeSorting(string $table, array $ids): void
+    {
+        foreach ($ids as $index => $id) {
+            $this->connection->update($this->connection->quoteIdentifier($table), [
+                'sorting' => ($index + 1) * self::SORT_GAP,
+            ], [
+                'id' => $id,
+            ]);
+        }
+    }
+
     private function needsInitialSorting(string $table): bool
     {
-        $result = $this->connection
-            ->prepare(\sprintf('SELECT COUNT(id) FROM %s WHERE sorting = 0', $table))
-            ->executeQuery()
-            ->fetchOne()
-        ;
+        $result = $this->connection->fetchOne(
+            \sprintf('SELECT COUNT(id) FROM %s WHERE sorting = 0', $this->connection->quoteIdentifier($table)),
+        );
 
         return $result > 0;
     }
